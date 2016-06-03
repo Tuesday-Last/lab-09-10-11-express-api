@@ -3,6 +3,8 @@
 const express = require('express');
 const debug = require('debug')('npc:server');
 const bodyParser = require('body-parser');
+const morgan = require('morgan');
+
 const errorResponse = require('./lib/error-response');
 const AppError = require('./lib/app-error');
 
@@ -12,6 +14,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(errorResponse);
+app.use(morgan('dev'))
 
 app.use('/api/npc', npcRouter);
 
